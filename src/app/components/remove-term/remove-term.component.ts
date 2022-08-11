@@ -9,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RemoveTermComponent implements OnInit {
   glossary = {
-    term: "",
-    definition: ""
+    data: {
+      term: "",
+      definition: ""
+    }
   };
   termRemoveSuccessful: Boolean = false;
   message: string = ""
@@ -27,15 +29,15 @@ export class RemoveTermComponent implements OnInit {
 
   fetchTermById(id: string): void {
     this.glossaryService.getTermById(id).subscribe((res: any) => {
-      this.glossary.term = res.term;
-      this.glossary.definition = res.definition;
+      this.glossary.data.term = res.data.term;
+      this.glossary.data.definition = res.data.definition;
     })
   }
 
   removeTerm(): void {
     this.glossaryService.removeTerm(this.termId).subscribe((res: any) => {
       this.termRemoveSuccessful = true;
-      this.message = res.message;
+      this.message = res.data.message;
     })
   }
 

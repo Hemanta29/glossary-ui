@@ -9,8 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddTermComponent implements OnInit {
   glossary = {
-    term: "",
-    definition: ""
+    data: {
+      term: "",
+      definition: ""
+    }
   };
   termAddSuccessful: Boolean = false;
   message: string = ""
@@ -36,14 +38,17 @@ export class AddTermComponent implements OnInit {
 
   fetchTermById(id: string): void {
     this.glossaryService.getTermById(id).subscribe((res: any) => {
-      this.glossary.term = res.term;
-      this.glossary.definition = res.definition;
+      console.log(res);
+      this.glossary.data.term = res.data.term;
+      this.glossary.data.definition = res.data.definition;
     })
   }
   updateTerm(): void {
-    this.glossaryService.updateTerm(this.termId, this.glossary).subscribe((res: any) => {
+    console.log(this.glossary);
+    this.glossaryService.updateTerm(this.termId, this.glossary.data).subscribe((res: any) => {
+      console.log(res)
       this.termAddSuccessful = true;
-      this.message = res.message;
+      this.message = res.data.message;
     })
   }
 
