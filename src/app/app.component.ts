@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = Constants.TitleOfSite;
   constructor(private constants: Constants) {
-    console.log(this.constants.API_ENDPOINT)
+    console.log(this.constants.API_ENDPOINT);
   }
 
 }
